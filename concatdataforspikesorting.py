@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Fri Oct 21 12:54:09 2022
-
-@author: mbellvila
-"""
 
 #After running MUAartrem.m to clean the stimulation artefact from the MUA data, 
 #this script concatenates data from rat subfolders to subsequently analyze using SpyKING Circus
