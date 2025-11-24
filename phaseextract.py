@@ -160,7 +160,7 @@ for folder in folders:
 #%%
 
 #Insert location of 20-min sACS experiment folders   
-directories = sorted(glob.glob('/20minsACSdata/202*/'))
+directories = sorted(glob.glob('/20minsACS/202*/'))
 for directory in directories: 
     print(directory)
     stimdata = np.load(directory + 'stimtimepoints.npy')
