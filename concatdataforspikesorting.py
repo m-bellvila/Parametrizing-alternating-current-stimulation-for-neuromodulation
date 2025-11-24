@@ -9,12 +9,16 @@ Created on Fri Oct 21 12:54:09 2022
 #After running MUAartrem.m to clean the stimulation artefact from the MUA data, 
 #this script concatenates data from rat subfolders to subsequently analyze using SpyKING Circus
 
+#%%
 import glob
 import numpy as np
 import scipy.io
 import mat73
+import tdt
 
+#%%
 #This should be edited to the folder containing all 1-min sACS experiments
+#This section of the code will concatenate and save all the filtered MUA data for each rat of the 1-min sACS experiments
 dirstosearch = glob.glob('/locationof1minACSdata/202*/')
 
 for directory in dirstosearch:
@@ -43,8 +47,9 @@ for directory in dirstosearch:
     np.save(directory + 'segmentlengths.npy',np.array([lengthofsegment, stimtp, stimwf, stimfreq, stimamp], dtype=object))
     
     
-
+#%%
 #This should be edited to the folder containing all 20-min sACS experiments
+#This concatenates all the MUA data per rat.
 directories = glob.glob('/locationof20minACSdata/202*/')
 for directory in directories:
     print(directory)
@@ -59,7 +64,18 @@ for directory in directories:
     np.save(directory + 'MUAfiltdata.npy', combinedMUA)
     np.save(directory + 'segmentlengths.npy',lengthofsegment)    
 
+#This portion of the code saves the stimulation timepoints for 20-min sACS experiments
+for directory in directories:
+    print(directory)
+    data = tdt.read_block(sorted(glob.glob(directory + 'sACS*/**/'))[0])
+    
+    stimon = data.epocs.Wfrq.onset[0]
+    stimoff = data.epocs.Wfrq.offset[0]
 
+    print(str(stimon))
+    print(str(stimoff))
+
+    np.save(directory + 'stimtimepoints.npy', [stimon, stimoff] )
 
 
 
