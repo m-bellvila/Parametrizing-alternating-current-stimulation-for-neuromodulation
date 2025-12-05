@@ -5,6 +5,7 @@ Parametrizing alternating current stimulation for neuromodulation. Imaging Neuro
 
 
 MUA analysis:
+
 First the sACS artefact was removed from MUA data using MUAartrem.m 
 
 Data was concatenated for spike detection using concatdataforspikesorting.py 
